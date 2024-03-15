@@ -40,6 +40,7 @@ func main() {
 		Addr:    fmt.Sprintf(":%d", serverPort),
 		Handler: serverMux,
 	}
+	server.SetKeepAlivesEnabled(false)
 	go func() {
 		log.Printf("Starting HTTP Greeter on port %d\n", serverPort)
 		if err := server.ListenAndServe(); !errors.Is(err, http.ErrServerClosed) {
